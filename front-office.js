@@ -43,8 +43,9 @@ const loadProducts = (arr) => {
                                 <img src=${element.imageUrl} class="card-img-top img-fluid">
                                 <div class="card-body">
                                     <h5 class="card-title">${element.name}</h5>
+                                    <p><em>Made by ${element.brand}</em></p>
                                     <p class="card-text">${element.description}</p>
-                                    <p><span class="badge badge-primary">${element.price}€</span></p>
+                                    <h3><span class="badge badge-primary">${element.price}€</span></h3>
                                 </div>
                                 </div> 
                             
