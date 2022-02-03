@@ -9,9 +9,9 @@ const getData = async  () => {
     
     try {
         const response = await fetch(URL, {
-          method: "GET",          
-          headers: {            
-            "Authorization":
+          method: "GET",
+          headers: {
+            Authorization:
               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWZhNjQ0NTgyZWExZDAwMTViYjAzZWEiLCJpYXQiOjE2NDM3OTk2MjIsImV4cCI6MTY0NTAwOTIyMn0.-64K2XQEdJuZl90T0yseyiP61ilY33mW8lOvLq1gTuM",
           },
         });

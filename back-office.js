@@ -41,6 +41,7 @@ if(productID !== null) {
      }
      window.onload = () => {
        loadProductInfo();
+       
      };
      
   } catch (error) {
@@ -97,8 +98,10 @@ if(productID !== null) {
 } else {
   const postData = async (event) => {
     event.preventDefault();
-    console.log(event);
-
+    console.log("POST SEQUENCE INITIATED")
+    
+    
+    
     const URL = "https://striveschool-api.herokuapp.com/api/product/";
 
     const myEvent = {
@@ -110,6 +113,7 @@ if(productID !== null) {
     };
 
     try {
+      checkForm();
       const response = await fetch(endpoint, {
         method: "POST",
         body: JSON.stringify(myEvent),
@@ -122,14 +126,19 @@ if(productID !== null) {
 
       const message = await response.json();
       console.log("POST Successful", message);
+      document.getElementById("alert-upload-completed").classList.remove("d-none");
+      document.getElementById("form").reset();
+
+      if (!document.querySelector("#alert-error").classList.contains("d-none")) {
+        document.querySelector("#alert-error").classList.add("d-none");
+      }
+        
     } catch (error) {
-      console.log(error);
+      document.querySelector("#alert-error > div.alert").innerText = `${error}`
+      document.querySelector("#alert-error").classList.remove("d-none")
     }
 
-    document
-      .getElementById("alert-upload-completed")
-      .classList.remove("d-none");
-      document.getElementById("form").reset();
+    
   };
 
   /* EVENT LISTENERS INSIDE IF */
@@ -146,7 +155,24 @@ const showLoading = (isloading) => {
   else if (isloading) spinner.classList.add("d-none");   
 }
 
+const checkForm = () => {
+  console.log("CHECKING FORM START")
+  let inputs = Array.from(document.querySelectorAll(".form-control"));
 
+  inputs.forEach((input) => {
+    
+    if (input.value === "" && !input.classList.contains("empty-field")) {
+      input.classList.add("empty-field");
+    } else {
+      input.classList.add("validated");
+    }
+
+  });
+ if (inputs.some((input) => input.classList.contains("empty-field")))
+   throw new Error("All fields must be filled");
+ console.log("FIRST IF CHECK PASSED");  
+ 
+}
 
 /* ASYNC FUNCTIONS END */
 
@@ -157,9 +183,3 @@ const showLoading = (isloading) => {
 
 
 /*GLOBAL EVENT LISTENERS END */
-
-
-
-
-
-
