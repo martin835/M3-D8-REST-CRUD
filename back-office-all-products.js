@@ -46,6 +46,7 @@ const loadProducts = (arr) => {
                                     <p><em>Made by ${element.brand}</em></p>
                                     <p class="card-text">${element.description}</p>
                                     <h3><span class="badge badge-primary">${element.price}€</span></h3>
+                                    <a href="edit-product.html?productID=${element._id}" class="stretched-link">Edit product</a>
                                 </div>
                                 </div> 
                             
