@@ -33,7 +33,7 @@ if(productID !== null) {
       
       /* CHANGING BUTTONS, TEXTS ETC.... */
 
-      document.querySelector(".btn-primary").innerText = "Edit Product"
+      document.querySelector("#submitBtn").innerText = "Edit Product";
       document.querySelector(".btn-danger").classList.remove("d-none")
       document.querySelector("h3").innerText = "Edit Product Details:";
 
@@ -70,7 +70,8 @@ if(productID !== null) {
       });
 
       const message = await response.json();
-      console.log("POST Successful", message);
+      /* console.log("EDIT Successful", message); */
+      document.getElementById("alert-editing-completed").classList.remove("d-none");
     } catch (error) {
       console.log(error);
     }
@@ -124,6 +125,11 @@ if(productID !== null) {
     } catch (error) {
       console.log(error);
     }
+
+    document
+      .getElementById("alert-upload-completed")
+      .classList.remove("d-none");
+      document.getElementById("form").reset();
   };
 
   /* EVENT LISTENERS INSIDE IF */
@@ -134,7 +140,11 @@ if(productID !== null) {
 
 
 
-
+const showLoading = (isloading) => {
+  const spinner = document.getElementById("spinner");
+  if (isloading) spinner.classList.remove("d-none")
+  else if (isloading) spinner.classList.add("d-none");   
+}
 
 
 

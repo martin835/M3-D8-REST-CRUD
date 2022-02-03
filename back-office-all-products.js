@@ -4,8 +4,9 @@
 
 /* ASYNC FUNCTIONS */
 const getData = async  () => {
-  const URL = "https://striveschool-api.herokuapp.com/api/product/"
   
+  const URL = "https://striveschool-api.herokuapp.com/api/product/"
+    
     try {
         const response = await fetch(URL, {
           method: "GET",          
@@ -22,6 +23,8 @@ const getData = async  () => {
     } catch (error) {
     console.log(error)
     }
+
+    showLoading(false);
     
 };
 
@@ -56,6 +59,13 @@ const loadProducts = (arr) => {
 
 }
 
+
+const showLoading = (isloading) => {
+  const spinner = document.getElementById("spinner");
+  if (isloading) spinner.classList.remove("d-none");
+  else spinner.classList.add("d-none");
+};
+
 /* OTHER FUNCTIONS END */
 
 /* EVENT LISTENERS */
@@ -66,5 +76,6 @@ const loadProducts = (arr) => {
 
 
 window.onload = () => {
-    getData();
+  showLoading(true);  
+  getData();
 };
